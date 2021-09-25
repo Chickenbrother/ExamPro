@@ -96,7 +96,7 @@ module.exports={
    {
     // for ant design
     test: /\.less$/,
-    include: resolve('../node_modules'),
+    include: resolve('./node_modules'),
     use: [
       'style-loader',
       'css-loader',
@@ -104,8 +104,10 @@ module.exports={
       {
         loader: 'less-loader',
         options: {
-          javascriptEnabled: true,
-          modifyVars: resolve('theme')
+            lessOptions: {
+              javascriptEnabled: true,
+              modifyVars: path.join(__dirname, './theme.js')
+           }
         }
       }
     ]
