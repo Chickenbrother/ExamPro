@@ -6,6 +6,8 @@ module.exports={
     filename: 'bundle.js',
     path: path.join(__dirname, './dist')
   },
+  mode: 'development', 
+  devtool: 'eval-source-map',
   devServer: {
     host: 'localhost',
     port: 3000,
@@ -53,6 +55,23 @@ module.exports={
           }
         }
       ]
+   },
+   {
+    // for ant design
+    test: /\.less$/,
+    include: resolve('../node_modules'),
+    use: [
+      'style-loader',
+      'css-loader',
+      'postcss-loader',
+      {
+        loader: 'less-loader',
+        options: {
+          javascriptEnabled: true,
+          modifyVars: theme
+        }
+      }
+    ]
    },
    {
     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
